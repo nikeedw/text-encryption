@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="UI/style.css">
+	<title>Text Encryption</title>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Nikolaev Eduard</h1>
+		<input type="text" id="textInput" placeholder="Enter text">
+		<input type="text" id="keyInput" placeholder="Enter key">
+		<label for="operation">Выбрать операцию:</label>
+		<select id="operation">
+			<option value="encrypt">Зашифровать</option>
+			<option value="decrypt">Расшифровать</option>
+		</select>
+		<label for="method">Выбрать метод:</label>
+		<select id="method">
+			<option value="cesar">Цезаря</option>
+			<option value="vigenere">Вижинера</option>
+			<option value="vernam">Вернама</option>
+		</select>
+		<button id="submitButton">Отправить</button>
+		<div id="output"></div>
+	</div>
+
+	<script type="module" src="UI/script.js"></script>
+</body>
+
+</html>
