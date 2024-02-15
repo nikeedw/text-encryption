@@ -1,33 +1,34 @@
-// функция для генерации случайного ключа опеределённой длинны в верхнем регистре
+// Функция для генерации случайного ключа определенной длины в верхнем регистре
 function generateKey(length) {
 	const key = [];
+	const usedChars = {}; // Объект для отслеживания использованных символов
 	for (let i = 0; i < length; i++) {
-		const randomCharCode = Math.floor(Math.random() * 26) + 65; // случайный код буквы A-Z
-		// добавляем символ в массив и инвертируем код в символ
-		key.push(String.fromCharCode(randomCharCode));
+		let randomCharCode;
+		do {
+			randomCharCode = Math.floor(Math.random() * 26) + 65; // Случайный код буквы A-Z
+		} while (usedChars[randomCharCode]); // Проверяем, использовался ли этот символ
+		usedChars[randomCharCode] = true; // Отмечаем символ как использованный
+		const char = String.fromCharCode(randomCharCode);
+		key.push(char);
 	}
-	// соеденяем символы без пробела
 	return key.join('');
 }
 
-// функция для зашифровки Вернама
+// Функция для зашифровки Вернама
 function vernamEncrypt(message, key) {
-	// проверка на длинну ключа
+	// Проверка на длину ключа
 	if (message.length !== key.length) {
 		throw new Error('Длины сообщения и ключа должны совпадать.');
 	}
 
-	let encryptedText = ''; // переменная для хранения зашифрованного текста
+	let encryptedText = ''; // Переменная для хранения зашифрованного текста
 	for (let i = 0; i < message.length; i++) {
 		const char = message[i];
-		// проверка на Латынь
 		if (char.match(/[A-Z]/)) {
-			//складываем код ключа и pt
-			//вычитаю 130 для перехода к правильному диапазону от 0 до 25
 			const charCode = (char.charCodeAt(0) + key.charCodeAt(i) - 130) % 26 + 65;
 			encryptedText += String.fromCharCode(charCode);
 		} else {
-			encryptedText += char; // сохраняем символы, не являющиеся буквами
+			encryptedText += char; // Сохраняем символы, не являющиеся буквами
 		}
 	}
 	return encryptedText;
@@ -42,12 +43,10 @@ function vernamDecrypt(encryptedText, key) {
 	for (let i = 0; i < encryptedText.length; i++) {
 		const char = encryptedText[i];
 		if (char.match(/[A-Z]/)) {
-			// получаю код символа (key.charCodeAt -> код ключа на текущей позиции)
 			const charCode = ((char.charCodeAt(0) - key.charCodeAt(i) + 26) % 26) + 65;
-			// привожу код к Символу
 			decryptedText += String.fromCharCode(charCode);
 		} else {
-			decryptedText += char; // сохраняем символы, не являющиеся буквами (ошибка с пробелами и запятыми)
+			decryptedText += char; // Сохраняем символы, не являющиеся буквами
 		}
 	}
 	return decryptedText;

@@ -1,4 +1,13 @@
 export function vernamEncrypt(text, key) {
+	// Проверка на повторяющиеся символы в ключе
+	const usedChars = {};
+	for (const char of key) {
+		if (usedChars[char]) {
+			throw new Error('Ключ не должен содержать повторяющиеся символы.');
+		}
+		usedChars[char] = true;
+	}
+
 	const keyLength = key.length;
 	let keyIndex = 0;
 	let encryptedText = '';
@@ -13,7 +22,7 @@ export function vernamEncrypt(text, key) {
 			encryptedCharCode = (charCode + keyCode) % 26 + 65;
 			keyIndex++;
 		} else {
-			encryptedCharCode = char.charCodeAt(0); 
+			encryptedCharCode = char.charCodeAt(0);
 		}
 
 		encryptedText += String.fromCharCode(encryptedCharCode);
@@ -22,6 +31,15 @@ export function vernamEncrypt(text, key) {
 }
 
 export function vernamDecrypt(text, key) {
+		// Проверка на повторяющиеся символы в ключе
+		const usedChars = {};
+		for (const char of key) {
+			if (usedChars[char]) {
+				throw new Error('Ключ не должен содержать повторяющиеся символы.');
+			}
+			usedChars[char] = true;
+		}
+
 	const processedKey = key.replace(/\s/g, '');
 	let decryptedText = '';
 	let keyIndex = 0;

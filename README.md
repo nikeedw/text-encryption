@@ -1,1 +1,1 @@
-Text Encryption using vanila JS
+Text Encryption using vanilla JS
