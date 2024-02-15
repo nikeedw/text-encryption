@@ -1,6 +1,6 @@
 export function encryptVigenere(text, keyword) {
 	if (keyword.length > text.length) {
-		throw new Error('Keyword length must be less than or equal to the length of the text.');
+		throw new Error('Ключ должен быть либо меньше, либо равным длине исходного текста');
 	}
 
 	let encryptedText = '';
@@ -26,7 +26,7 @@ export function encryptVigenere(text, keyword) {
 
 export function decryptVigenere(text, keyword) {
 	if (keyword.length > text.length) {
-		throw new Error('Keyword length must be less than or equal to the length of the text.');
+		throw new Error('Ключ должен быть либо меньше, либо равным длине исходного текста');
 	}
 
 	let decryptedText = '';

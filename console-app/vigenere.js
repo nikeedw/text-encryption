@@ -1,5 +1,8 @@
 // функция для зашифровки шифром Виженера
 function encryptVigenere(text, keyword) {
+	if (keyword.length === 0 || keyword.length >= text.length) {
+		throw new Error('Некорректная длина ключа. Длина ключа должна быть больше 0 и меньше длины исходного текста.');
+	}
 	let encryptedText = ''; // переменная для сохранения зашифрованного текста
 	let keywordIndex = 0; // индекс символа в ключевом слове
 
@@ -60,8 +63,8 @@ function decryptVigenere(text, keyword) {
 }
 
 // Пример
-const originalText = "Securitatea Informationala";
-const keyword = "BEC"
+const originalText = "Milan";
+const keyword = "ABCDEFG"
 
 const encryptedText = encryptVigenere(originalText, keyword);
 console.log("Зашифрованный текст:", encryptedText);

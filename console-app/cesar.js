@@ -44,7 +44,7 @@ function decryptCesar(text, shift) {
 
 // Исходный текст pt
 const originalText = "Securitatea Informationala";
-const shiftAmount = 3;
+const shiftAmount = 13;
 
 // Зашифрованный текст ct
 const encryptedText = encryptCesar(originalText, shiftAmount);
